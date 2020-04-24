@@ -37,21 +37,21 @@ public class MovieAppController {
 	private MovieService movieService;
 	
 	@ApiOperation("This is create movie api")
-    @RequestMapping(value = "/movies/create", produces = { "application/json" }, consumes = { "application/json" }, method = RequestMethod.POST)
+    @RequestMapping(value = "movies/create", produces = { "application/json" }, consumes = { "application/json" }, method = RequestMethod.POST)
 	public ResponseEntity<MovieOutput> addMovie(@ApiParam(value = "") @Valid @RequestBody MovieInput movieBody) {
 		log.info("movieBody:: {}", movieBody);
 		return new ResponseEntity<MovieOutput>(movieService.addMovie(movieBody), HttpStatus.OK);
 	}
 	
 	@ApiOperation("This is create theatre api")
-    @RequestMapping(value = "/theatres/create", produces = { "application/json" }, consumes = { "application/json" }, method = RequestMethod.POST)
+    @RequestMapping(value = "theatres/create", produces = { "application/json" }, consumes = { "application/json" }, method = RequestMethod.POST)
 	public ResponseEntity<TheatreOutput> addTheatre(@ApiParam(value = "") @Valid @RequestBody TheatreInput theatreBody) {
 		log.info("theatreBody:: {}", theatreBody);
 		return new ResponseEntity<TheatreOutput>(movieService.addTheatre(theatreBody), HttpStatus.OK);
 	}
 	
 	@ApiOperation("This is add shows api")
-    @RequestMapping(value = "/shows/create", produces = { "application/json" }, consumes = { "application/json" }, method = RequestMethod.POST)
+    @RequestMapping(value = "shows/create", produces = { "application/json" }, consumes = { "application/json" }, method = RequestMethod.POST)
 	public ResponseEntity<ShowsOutput> addShows(@ApiParam(value = "") @Valid @RequestBody ShowsInput showsBody) throws ParseException  {
 		MDC.put("movieId", String.valueOf(showsBody.getMovieId()));
 		MDC.put("theatreId", String.valueOf(showsBody.getTheatreId()));
@@ -60,7 +60,7 @@ public class MovieAppController {
 	}
 	
 	@ApiOperation("This is get movie shows api")
-    @RequestMapping(value = "/showsBy", produces = { "application/json" }, consumes = { "application/x-www-form-urlencoded" }, method = RequestMethod.POST)
+    @RequestMapping(value = "showsBy", produces = { "application/json" }, consumes = { "application/x-www-form-urlencoded" }, method = RequestMethod.POST)
 	public ResponseEntity<MovieShows> getMovieShows(@RequestParam(name = "city", required = true) String city,
 			@RequestParam(name="date", required = true) String date, @RequestParam(name="movie_id", required = true) Integer movieId) throws ParseException {
 		MDC.put("movieId", String.valueOf(movieId));
