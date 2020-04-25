@@ -18,7 +18,7 @@ public class MovieEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int movieId;
-	@Column(unique = true)
+	//@Column(unique = true)
 	private String movieName;
 	private String movieTrailer;
 	private String movieOverview;

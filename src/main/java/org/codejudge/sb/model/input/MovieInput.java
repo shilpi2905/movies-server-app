@@ -21,7 +21,7 @@ public class MovieInput {
 	@JsonProperty("length")
 	private Integer movieLength;
 
-	//@NotNull(message = "movie_name must not be null")
+	@NotNull(message = "movie_name must not be null")
 	public String getMovieName() {
 		return movieName;
 	}
@@ -30,7 +30,7 @@ public class MovieInput {
 		this.movieName = movieName;
 	}
 
-	//@NotNull(message = "movie_trailer must not be null")
+	@NotNull(message = "movie_trailer must not be null")
 	public String getMovieTrailer() {
 		return movieTrailer;
 	}
@@ -39,7 +39,7 @@ public class MovieInput {
 		this.movieTrailer = movieTrailer;
 	}
 
-	//@NotNull(message = "movie_overview must not be null")
+	@NotNull(message = "movie_overview must not be null")
 	public String getMovieOverview() {
 		return movieOverview;
 	}
@@ -48,7 +48,7 @@ public class MovieInput {
 		this.movieOverview = movieOverview;
 	}
 
-	//@NotNull(message = "movie_poster must not be null")
+	@NotNull(message = "movie_poster must not be null")
 	public String getMoviePoster() {
 		return moviePoster;
 	}
@@ -57,7 +57,7 @@ public class MovieInput {
 		this.moviePoster = moviePoster;
 	}
 
-	//@NotNull(message = "length must not be null")
+	@NotNull(message = "length must not be null")
 	public Integer getMovieLength() {
 		return movieLength;
 	}
