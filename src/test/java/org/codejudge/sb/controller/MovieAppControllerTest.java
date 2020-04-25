@@ -152,11 +152,11 @@ public class MovieAppControllerTest {
 		assertEquals(HttpStatus.BAD_REQUEST.value(), status);
 	}
 
-	/*@Test
+	@Test
 	public void getMovieShowsTestFailWithInvalidCity() throws Exception {
 		MvcResult result = mockMvc
-				.perform(MockMvcRequestBuilders.get("/showsBy").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-						.accept(MediaType.APPLICATION_JSON_UTF8).content("city=Lucknow1&date=2019-07-31&movie_id=1"))
+				.perform(MockMvcRequestBuilders.get("/showsBy")
+						.accept(MediaType.APPLICATION_JSON_UTF8).param("city", "Lucknow1").param("date", "2019-07-31").param("movie_id", "1"))
 				.andReturn();
 		assertNotNull(result);
 		int status = result.getResponse().getStatus();
@@ -166,11 +166,11 @@ public class MovieAppControllerTest {
 	@Test
 	public void getMovieShowsTestFailWithInvalidData() throws Exception {
 		MvcResult result = mockMvc
-				.perform(MockMvcRequestBuilders.post("/showsBy").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-						.accept(MediaType.APPLICATION_JSON_UTF8).content("city=Lucknow&date=2019/07/31&movie_id=1"))
+				.perform(MockMvcRequestBuilders.get("/showsBy")
+						.accept(MediaType.APPLICATION_JSON_UTF8).param("city", "Lucknow").param("date", "2019/07/31").param("movie_id", "1"))
 				.andReturn();
 		assertNotNull(result);
 		int status = result.getResponse().getStatus();
 		assertEquals(HttpStatus.BAD_REQUEST.value(), status);
-	}*/
+	}
 }
