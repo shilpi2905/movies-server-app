@@ -19,7 +19,7 @@ public class MovieInput {
 	private String moviePoster;
 
 	@JsonProperty("length")
-	private Long movieLength;
+	private Integer movieLength;
 
 	//@NotNull(message = "movie_name must not be null")
 	public String getMovieName() {
@@ -57,12 +57,12 @@ public class MovieInput {
 		this.moviePoster = moviePoster;
 	}
 
-	@NotNull(message = "length must not be null")
-	public Long getMovieLength() {
+	//@NotNull(message = "length must not be null")
+	public Integer getMovieLength() {
 		return movieLength;
 	}
 
-	public void setMovieLength(Long movieLength) {
+	public void setMovieLength(Integer movieLength) {
 		this.movieLength = movieLength;
 	}
 

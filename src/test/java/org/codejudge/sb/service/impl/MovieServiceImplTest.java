@@ -54,7 +54,7 @@ public class MovieServiceImplTest {
 		MockitoAnnotations.initMocks(this);
 		mapper = new ObjectMapper();
 		movie = new MovieInput();
-		movie.setMovieLength(156L);
+		movie.setMovieLength(156);
 		movie.setMovieName("ABC");
 		movie.setMovieOverview("XYZ Theatre");
 		movie.setMoviePoster("MKL Poster");
@@ -105,7 +105,7 @@ public class MovieServiceImplTest {
 	@Test
 	public void addShowTestWhenShowsListIsNotEmpty() throws ParseException {
 		MovieEntity mEntity = new MovieEntity();
-		mEntity.setMovieLength(156L);
+		mEntity.setMovieLength(156);
 		when(movieRepository.findById(any())).thenReturn(Optional.of(mEntity));
 		when(theatreRepository.findById(any())).thenReturn(Optional.of(new TheatreEntity()));
 		List<ShowEntity> shows = new ArrayList<ShowEntity>();
@@ -122,7 +122,7 @@ public class MovieServiceImplTest {
 	@Test(expected = CommonException.class)
 	public void addShowTestWhenShowsOverlap() throws ParseException {
 		MovieEntity mEntity = new MovieEntity();
-		mEntity.setMovieLength(156L);
+		mEntity.setMovieLength(156);
 		when(movieRepository.findById(any())).thenReturn(Optional.of(mEntity));
 		when(theatreRepository.findById(any())).thenReturn(Optional.of(new TheatreEntity()));
 		List<ShowEntity> shows = new ArrayList<ShowEntity>();

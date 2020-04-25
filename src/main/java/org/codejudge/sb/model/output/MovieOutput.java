@@ -20,7 +20,7 @@ public class MovieOutput {
 	private String moviePoster;
 
 	@JsonProperty("length")
-	private Long movieLength;
+	private Integer movieLength;
 
 	public int getMovieId() {
 		return movieId;
@@ -62,11 +62,11 @@ public class MovieOutput {
 		this.moviePoster = moviePoster;
 	}
 
-	public Long getMovieLength() {
+	public Integer getMovieLength() {
 		return movieLength;
 	}
 
-	public void setMovieLength(Long movieLength) {
+	public void setMovieLength(Integer movieLength) {
 		this.movieLength = movieLength;
 	}
 

@@ -23,7 +23,7 @@ public class MovieEntity implements Serializable {
 	private String movieTrailer;
 	private String movieOverview;
 	private String moviePoster;
-	private Long movieLength;
+	private Integer movieLength;
 
 	public int getMovieId() {
 		return movieId;
@@ -65,11 +65,11 @@ public class MovieEntity implements Serializable {
 		this.moviePoster = moviePoster;
 	}
 
-	public Long getMovieLength() {
+	public Integer getMovieLength() {
 		return movieLength;
 	}
 
-	public void setMovieLength(Long movieLength) {
+	public void setMovieLength(Integer movieLength) {
 		this.movieLength = movieLength;
 	}
 

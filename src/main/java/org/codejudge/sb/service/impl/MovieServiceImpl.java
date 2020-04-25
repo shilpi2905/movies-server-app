@@ -100,7 +100,7 @@ public class MovieServiceImpl implements MovieService {
 		if (movieRepository.findById(show.getMovieId()).isPresent()
 				&& theatreRepository.findById(show.getTheatreId()).isPresent()) {
 			MovieEntity movie = movieRepository.findById(show.getMovieId()).get();
-			Long movieLength = movie.getMovieLength();
+			Integer movieLength = movie.getMovieLength();
 			TheatreEntity theatre = theatreRepository.findById(show.getTheatreId()).get();
 			List<ShowEntity> shows = showRepository.findByIdMovieIdAndIdTheatreId(show.getMovieId(),
 					show.getTheatreId());
@@ -129,7 +129,7 @@ public class MovieServiceImpl implements MovieService {
 		}
 	}
 
-	private boolean checkShowsOverlap(List<ShowEntity> shows, String showDate, String showTime, Long movieLength)
+	private boolean checkShowsOverlap(List<ShowEntity> shows, String showDate, String showTime, Integer movieLength)
 			throws ParseException {
 		List<ShowEntity> filteredByDate = shows.stream().filter(s -> s.getDate().equals(showDate))
 				.collect(Collectors.toList());
