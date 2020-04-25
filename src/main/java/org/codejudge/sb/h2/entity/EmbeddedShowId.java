@@ -1,13 +1,9 @@
 package org.codejudge.sb.h2.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Embeddable
 public class EmbeddedShowId implements Serializable {
@@ -16,8 +12,11 @@ public class EmbeddedShowId implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Column(name = "movie_id")
 	private int movieId;
+	@Column(name = "theatre_id")
 	private int theatreId;
+	@Column(name = "movie_time")
 	private String time;
 	
 	public EmbeddedShowId() {

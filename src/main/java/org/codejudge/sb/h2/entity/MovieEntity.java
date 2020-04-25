@@ -7,22 +7,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="MOVIES")
 public class MovieEntity implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "movie_id")
 	private int movieId;
-	@Column(unique = true)
+	@Column(unique = true, name = "movie_name")
 	private String movieName;
+	@Column(name = "movie_trailer")
 	private String movieTrailer;
+	@Column(name = "movie_overview")
 	private String movieOverview;
+	@Column(name = "movie_poster")
 	private String moviePoster;
+	@Column(name = "length")
 	private Integer movieLength;
 
 	public int getMovieId() {

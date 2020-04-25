@@ -53,15 +53,14 @@ public class MovieServiceImpl implements MovieService {
 		movieEntity.setMoviePoster(movie.getMoviePoster());
 		movieEntity.setMovieOverview(movie.getMovieOverview());
 		movieEntity.setMovieLength(movie.getMovieLength());
-		MovieEntity mov = movieRepository.save(movieEntity);
-		log.info("output:: {}", movieRepository.findById(mov.getMovieId()));
-		return constructMovieOutput(mov);
-		/*try {
-			
+		try {
+			MovieEntity mov = movieRepository.save(movieEntity);
+			log.info("output:: {}", movieRepository.findById(mov.getMovieId()));
+			return constructMovieOutput(mov);
 		} catch (Exception ex) {
 			throw new CommonException(
 					new Error("failure", "Movie already exist, please create movie with another name"));
-		}*/
+		}
 
 	}
 

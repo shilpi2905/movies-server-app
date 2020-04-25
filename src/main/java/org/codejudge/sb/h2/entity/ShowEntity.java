@@ -2,10 +2,13 @@ package org.codejudge.sb.h2.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="SHOWS")
 public class ShowEntity implements Serializable {
 
 	/**
@@ -14,6 +17,7 @@ public class ShowEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId
 	private EmbeddedShowId id;
+	@Column(name = "movie_date")
 	private String date;
 	public ShowEntity() {
 		
