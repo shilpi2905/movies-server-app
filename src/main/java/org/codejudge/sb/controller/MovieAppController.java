@@ -60,7 +60,7 @@ public class MovieAppController {
 	}
 	
 	@ApiOperation("This is get movie shows api")
-    @RequestMapping(value = "/showsBy", produces = { "application/json" }, consumes = { "application/x-www-form-urlencoded" }, method = RequestMethod.POST)
+    @RequestMapping(value = "/showsBy", produces = { "application/json" }, method = RequestMethod.GET)
 	public ResponseEntity<MovieShows> getMovieShows(@RequestParam(name = "city", required = true) String city,
 			@RequestParam(name="date", required = true) String date, @RequestParam(name="movie_id", required = true) int movieId) throws ParseException {
 		MDC.put("movieId", String.valueOf(movieId));
