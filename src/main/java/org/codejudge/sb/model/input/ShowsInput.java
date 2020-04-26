@@ -45,7 +45,7 @@ public class ShowsInput {
 	}
 
 	@NotNull(message = "time must not be null")
-	@Pattern(regexp="(20|21|22|23|[0-1]?\\d):[0-5]?\\d:[0-5]?\\d$", message = "Invalid time, valid format is: hh24:mm:ss")
+	@Pattern(regexp="(20|21|22|23|[0-1]?\\d):[0-5]?\\d:[0-5]?\\d", message = "Invalid time, valid format is: hh24:mm:ss")
 	public String getTime() {
 		return time;
 	}
