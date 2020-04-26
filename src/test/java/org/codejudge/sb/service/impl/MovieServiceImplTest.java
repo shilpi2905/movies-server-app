@@ -25,12 +25,12 @@ import org.codejudge.sb.model.output.MovieOutput;
 import org.codejudge.sb.model.output.MovieShows;
 import org.codejudge.sb.model.output.ShowsOutput;
 import org.codejudge.sb.model.output.TheatreOutput;
-import org.hibernate.exception.ConstraintViolationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -80,7 +80,7 @@ public class MovieServiceImplTest {
 	
 	@Test(expected = CommonException.class)
 	public void addMovieTestFail() {
-		when(movieRepository.save(any())).thenThrow(ConstraintViolationException.class);
+		when(movieRepository.save(any())).thenThrow(DataIntegrityViolationException.class);
 		MovieOutput output = service.addMovie(movie);
 		assertNull(output);
 	}

@@ -29,6 +29,7 @@ import org.codejudge.sb.model.output.TheatreShows;
 import org.codejudge.sb.service.MovieService;
 import org.codejudge.sb.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +58,7 @@ public class MovieServiceImpl implements MovieService {
 			MovieEntity mov = movieRepository.save(movieEntity);
 			log.info("output:: {}", movieRepository.findById(mov.getMovieId()));
 			return constructMovieOutput(mov);
-		} catch (Exception ex) {
+		} catch (DataIntegrityViolationException ex) {
 			throw new CommonException(
 					new Error("failure", "Movie already exist, please create movie with another name"));
 		}
