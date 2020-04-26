@@ -6,7 +6,7 @@ CREATE TABLE MOVIES (
   movie_id INT AUTO_INCREMENT  PRIMARY KEY,
   movie_name VARCHAR(200) NOT NULL UNIQUE,
   movie_trailer VARCHAR(250) NOT NULL,
-  movie_overview VARCHAR(300) NOT NULL,
+  movie_overview VARCHAR(1000) NOT NULL,
   movie_poster VARCHAR(250) NOT NULL,
   length INT NOT NULL
 );
