@@ -97,7 +97,7 @@ public class MovieServiceImpl implements MovieService {
 		return constructTheatreOutput(the);
 	}
 
-	public ShowsOutput addShow(ShowsInput show) throws ParseException {
+	public ShowsOutput addShow(ShowsInput show) {
 		if (movieRepository.findById(show.getMovieId()).isPresent()
 				&& theatreRepository.findById(show.getTheatreId()).isPresent()) {
 			MovieEntity movie = movieRepository.findById(show.getMovieId()).get();
@@ -131,21 +131,26 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	private boolean checkShowsOverlap(List<ShowEntity> shows, String showDate, String showTime, Integer movieLength)
-			throws ParseException {
+		 {
 		List<ShowEntity> filteredByDate = shows.stream().filter(s -> s.getDate().equals(showDate))
 				.collect(Collectors.toList());
 		SimpleDateFormat timeFormat = new SimpleDateFormat(Constants.DATE_TIME_REGEX);
-		Date convertedShowTime = timeFormat.parse(showDate + " " + showTime);
-		for (ShowEntity show : filteredByDate) {
-			Date time = timeFormat.parse(show.getDate() + " " + show.getId().getTime());
-			Date movieEndTime = Date.from(time.toInstant().plus(movieLength, ChronoUnit.MINUTES));
-			if ((convertedShowTime.after(time) || convertedShowTime.equals(time))
-					&& (convertedShowTime.before(movieEndTime) || convertedShowTime.equals(movieEndTime))) {
-				return true;
-			}
+		try {
+			Date convertedShowTime = timeFormat.parse(showDate + " " + showTime);
+			for (ShowEntity show : filteredByDate) {
+				Date time = timeFormat.parse(show.getDate() + " " + show.getId().getTime());
+				Date movieEndTime = Date.from(time.toInstant().plus(movieLength, ChronoUnit.MINUTES));
+				if ((convertedShowTime.after(time) || convertedShowTime.equals(time))
+						&& (convertedShowTime.before(movieEndTime) || convertedShowTime.equals(movieEndTime))) {
+					return true;
+				}
 
+			}
+			return false;
+		} catch (ParseException e) {
+			throw new CommonException(new Error(Constants.FAILURE, "Error: Date and Time parsing"));
 		}
-		return false;
+		
 	}
 
 	public MovieShows getShowsByCityAndDate(Integer movieId, String city, String date) {
