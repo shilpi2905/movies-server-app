@@ -136,12 +136,18 @@ public class MovieServiceImpl implements MovieService {
 				.collect(Collectors.toList());
 		SimpleDateFormat timeFormat = new SimpleDateFormat(Constants.DATE_TIME_REGEX);
 		try {
-			Date convertedShowTime = timeFormat.parse(showDate + " " + showTime);
+			Date convertedShowStartTime = timeFormat.parse(showDate + " " + showTime);
+			System.out.println("convertedShowStartTime "+convertedShowStartTime);
+			Date convertedShowEndTime = Date.from(convertedShowStartTime.toInstant().plus(movieLength, ChronoUnit.MINUTES));
+			System.out.println("convertedShowEndTime "+convertedShowEndTime);
 			for (ShowEntity show : filteredByDate) {
 				Date time = timeFormat.parse(show.getDate() + " " + show.getId().getTime());
+				System.out.println("time: "+time);
 				Date movieEndTime = Date.from(time.toInstant().plus(movieLength, ChronoUnit.MINUTES));
-				if ((convertedShowTime.after(time) || convertedShowTime.equals(time))
-						&& convertedShowTime.before(movieEndTime)) {
+				System.out.println("movieEndTime "+movieEndTime);
+				boolean isInputShowOverlap = (convertedShowStartTime.after(time) || convertedShowStartTime.equals(time)) && convertedShowStartTime.before(movieEndTime);
+				boolean isExistingShowOveralp = time.before(convertedShowEndTime) && (time.after(convertedShowStartTime) || time.equals(convertedShowStartTime));
+				if (isInputShowOverlap || isExistingShowOveralp) {
 					return true;
 				}
 
