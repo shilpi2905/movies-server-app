@@ -1,7 +1,5 @@
 package org.codejudge.sb.service;
 
-import java.text.ParseException;
-
 import org.codejudge.sb.model.input.MovieInput;
 import org.codejudge.sb.model.input.ShowsInput;
 import org.codejudge.sb.model.input.TheatreInput;
@@ -14,7 +12,7 @@ public interface MovieService {
 	
 	public MovieOutput addMovie(MovieInput movie);
 	public TheatreOutput addTheatre(TheatreInput theatre) ;
-	public ShowsOutput addShow(ShowsInput show) throws ParseException;
+	public ShowsOutput addShow(ShowsInput show);
 	public MovieShows getShowsByCityAndDate(Integer movieId, String city, String date);
 
 }

@@ -15,7 +15,6 @@ import org.codejudge.sb.model.output.ShowsOutput;
 import org.codejudge.sb.model.output.TheatreOutput;
 import org.codejudge.sb.service.MovieService;
 import org.codejudge.sb.utils.Constants;
-import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,9 +51,7 @@ public class MovieAppController {
 	
 	@ApiOperation("This is add shows api")
     @RequestMapping(value = "/shows/create", produces = { "application/json" }, consumes = { "application/json" }, method = RequestMethod.POST)
-	public ResponseEntity<ShowsOutput> addShows(@ApiParam(value = "") @Valid @RequestBody ShowsInput showsBody) throws ParseException  {
-		MDC.put("movieId", String.valueOf(showsBody.getMovieId()));
-		MDC.put("theatreId", String.valueOf(showsBody.getTheatreId()));
+	public ResponseEntity<ShowsOutput> addShows(@ApiParam(value = "") @Valid @RequestBody ShowsInput showsBody)  {
 		log.info("showsBody:: {}", showsBody);
 		return new ResponseEntity<ShowsOutput>(movieService.addShow(showsBody), HttpStatus.OK);
 	}
@@ -63,7 +60,6 @@ public class MovieAppController {
     @RequestMapping(value = "/showsBy", produces = { "application/json" }, method = RequestMethod.GET)
 	public ResponseEntity<MovieShows> getMovieShows(@RequestParam(name = "city", required = true) String city,
 			@RequestParam(name="date", required = true) String date, @RequestParam(name="movie_id", required = true) int movieId) throws ParseException {
-		MDC.put("movieId", String.valueOf(movieId));
 		log.info("request params:: City {}, date {}, movie_id {}", city, date, movieId);
 		if(!date.matches("^\\d{4}-\\d{2}-\\d{2}$") || !city.matches("Bengaluru|Mumbai|Delhi|Lucknow")) {
 			throw new CommonException(new Error(Constants.FAILURE, "Error: Invalid input: Please provide valid city (Bengaluru/Mumbai/Delhi/Lucknow) or date in format (yyyy-mm-dd)"));

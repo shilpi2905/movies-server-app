@@ -141,7 +141,7 @@ public class MovieServiceImpl implements MovieService {
 				Date time = timeFormat.parse(show.getDate() + " " + show.getId().getTime());
 				Date movieEndTime = Date.from(time.toInstant().plus(movieLength, ChronoUnit.MINUTES));
 				if ((convertedShowTime.after(time) || convertedShowTime.equals(time))
-						&& (convertedShowTime.before(movieEndTime) || convertedShowTime.equals(movieEndTime))) {
+						&& convertedShowTime.before(movieEndTime)) {
 					return true;
 				}
 
