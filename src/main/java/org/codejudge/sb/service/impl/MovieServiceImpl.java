@@ -114,7 +114,6 @@ public class MovieServiceImpl implements MovieService {
 			} else {
 				throw new CommonException(new Error(Constants.FAILURE, Constants.SHOWS_OVERLAP));
 			}
-
 			ShowsOutput output = new ShowsOutput();
 			output.setMovie(constructMovieOutput(movie));
 			output.setTheatre(constructTheatreOutput(theatre));
